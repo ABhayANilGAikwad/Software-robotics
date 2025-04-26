@@ -1,0 +1,1940 @@
+{
+  "triggers": [],
+  "nodes": [
+    {
+      "uid": "1e886fb9-8a8d-4b86-88ee-05d88a4b054d",
+      "commandName": "Comment",
+      "packageName": "Comment",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "comment",
+          "value": {
+            "type": "STRING",
+            "string": "format for excel"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "32c800c0-6622-449a-9121-596c7c41603d",
+      "commandName": "messageBox",
+      "packageName": "MessageBox",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "title",
+          "value": {
+            "type": "STRING",
+            "string": "Bulk message sender what's app & email"
+          }
+        },
+        {
+          "name": "content",
+          "value": {
+            "type": "STRING",
+            "string": "This bot send message through what's app and email using excel file\nthe input excel file should be in format : Name | Mobile number | Email address"
+          }
+        },
+        {
+          "name": "scrollLines",
+          "value": {
+            "type": "NUMBER",
+            "number": "30"
+          }
+        },
+        {
+          "name": "closeMsgBox",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": true
+          }
+        },
+        {
+          "name": "timeOut",
+          "value": {
+            "type": "NUMBER",
+            "number": "5"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "20ed7b77-323a-4dd9-b4e9-8a097d1cb05a",
+      "commandName": "Comment",
+      "packageName": "Comment",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "comment",
+          "value": {
+            "type": "STRING",
+            "string": "Get the address fo input excel file from user"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "b342b93a-5b91-4b03-9024-3ac0edcb96e9",
+      "commandName": "ForValue",
+      "packageName": "Prompt",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "windowCaption",
+          "value": {
+            "type": "STRING",
+            "string": "The input excel file"
+          }
+        },
+        {
+          "name": "promptMessage",
+          "value": {
+            "type": "STRING",
+            "string": "Please provide excel file path the order of the entrys in excel shoul be as Name | Mobile number | email"
+          }
+        },
+        {
+          "name": "encryptKeystroke",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": false
+          }
+        }
+      ],
+      "returnTo": {
+        "type": "VARIABLE",
+        "variableName": "filePath"
+      }
+    },
+    {
+      "uid": "564018ac-970d-49b8-90a4-0772c71d9c67",
+      "commandName": "Comment",
+      "packageName": "Comment",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "comment",
+          "value": {
+            "type": "STRING",
+            "string": "convert path to file"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "f960956d-624b-4c1c-8331-6f14596e4164",
+      "commandName": "assign",
+      "packageName": "File",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "sourceFile",
+          "value": {
+            "type": "FILE",
+            "expression": "file://$filePath$"
+          }
+        }
+      ],
+      "returnTo": {
+        "type": "VARIABLE",
+        "variableName": "file"
+      }
+    },
+    {
+      "uid": "fd3346cb-5417-4f57-afeb-e6e5070b8e4b",
+      "commandName": "Comment",
+      "packageName": "Comment",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "comment",
+          "value": {
+            "type": "STRING",
+            "string": "get message from user"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "87c471cc-a44a-4026-8ffc-7d9789242f68",
+      "commandName": "ForValue",
+      "packageName": "Prompt",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "windowCaption",
+          "value": {
+            "type": "STRING",
+            "string": "The message to be delivered"
+          }
+        },
+        {
+          "name": "promptMessage",
+          "value": {
+            "type": "STRING",
+            "string": "Enter your message"
+          }
+        },
+        {
+          "name": "encryptKeystroke",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": false
+          }
+        }
+      ],
+      "returnTo": {
+        "type": "VARIABLE",
+        "variableName": "message"
+      }
+    },
+    {
+      "uid": "90efb0ef-cb5e-4068-929f-8a5af6ee4f23",
+      "commandName": "ForYesNo",
+      "packageName": "Prompt",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "promptWindowCaption",
+          "value": {
+            "type": "STRING",
+            "string": "Mail Attachment"
+          }
+        },
+        {
+          "name": "promptMessage",
+          "value": {
+            "type": "STRING",
+            "string": "Enter address of file to attach to mail"
+          }
+        }
+      ],
+      "returnTo": {
+        "type": "VARIABLE",
+        "variableName": "attachemnt"
+      }
+    },
+    {
+      "uid": "46bc8fcf-24b1-4f4b-824a-0e79ebe2adbd",
+      "commandName": "Comment",
+      "packageName": "Comment",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "comment",
+          "value": {
+            "type": "STRING",
+            "string": "if file is present then add attachment"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "f980fc3b-a984-431f-918d-ff020330a7cd",
+      "commandName": "if",
+      "packageName": "If",
+      "children": [
+        {
+          "uid": "45c0a0c5-c812-46d7-8a95-aeb20bc92aa0",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "taking path as input for attachment"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "12cbd8ab-ae4c-4944-acb2-07c01e82bf19",
+          "commandName": "ForValue",
+          "packageName": "Prompt",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "windowCaption",
+              "value": {
+                "type": "STRING",
+                "string": "Mail attachment"
+              }
+            },
+            {
+              "name": "promptMessage",
+              "value": {
+                "type": "STRING",
+                "string": "Enter the address of file to attach to mail"
+              }
+            },
+            {
+              "name": "encryptKeystroke",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": false
+              }
+            }
+          ],
+          "returnTo": {
+            "type": "VARIABLE",
+            "variableName": "attchmentaddress"
+          }
+        }
+      ],
+      "branches": [],
+      "disabled": false,
+      "attributes": [
+        {
+          "attributes": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "STRING",
+                "expression": "$attachemnt$"
+              }
+            },
+            {
+              "name": "operator",
+              "value": {
+                "type": "STRING",
+                "string": "EQ"
+              }
+            },
+            {
+              "name": "value",
+              "value": {
+                "type": "STRING",
+                "string": "Yes"
+              }
+            },
+            {
+              "name": "matchCase",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": true
+              }
+            },
+            {
+              "name": "isIgnoreCarriage",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": false
+              }
+            }
+          ],
+          "operatorAttribute": {
+            "operator": "OR",
+            "attributes": [
+              {
+                "name": "variable",
+                "value": {
+                  "type": "STRING",
+                  "expression": "$attachemnt$"
+                }
+              },
+              {
+                "name": "operator",
+                "value": {
+                  "type": "STRING",
+                  "string": "EQ"
+                }
+              },
+              {
+                "name": "value",
+                "value": {
+                  "type": "STRING",
+                  "string": "yes"
+                }
+              },
+              {
+                "name": "matchCase",
+                "value": {
+                  "type": "BOOLEAN",
+                  "boolean": true
+                }
+              },
+              {
+                "name": "isIgnoreCarriage",
+                "value": {
+                  "type": "BOOLEAN",
+                  "boolean": false
+                }
+              }
+            ],
+            "value": {
+              "type": "CONDITIONAL",
+              "conditionalName": "stringVariable",
+              "packageName": "String"
+            }
+          },
+          "name": "condition",
+          "value": {
+            "type": "CONDITIONAL",
+            "conditionalName": "stringVariable",
+            "packageName": "String"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "096a9c61-68c7-4038-a9fc-9c13618c2d74",
+      "commandName": "Comment",
+      "packageName": "Comment",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "comment",
+          "value": {
+            "type": "STRING",
+            "string": "open the excel"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "096a206d-1654-43c6-9775-3c5ddb4aaf19",
+      "commandName": "OpenSpreadsheet",
+      "packageName": "Excel_MS",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "excelSourceOption",
+          "value": {
+            "type": "STRING",
+            "string": "desktopfilepath"
+          }
+        },
+        {
+          "name": "filePath",
+          "value": {
+            "type": "FILE",
+            "expression": "file://$filePath$"
+          }
+        },
+        {
+          "name": "containsHeader",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": false
+          }
+        },
+        {
+          "name": "isSpecificSheet",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": false
+          }
+        },
+        {
+          "name": "fileAccessMode",
+          "value": {
+            "type": "STRING",
+            "string": "EDIT"
+          }
+        },
+        {
+          "name": "isSecure",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": false
+          }
+        },
+        {
+          "name": "loadAddIns",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": false
+          }
+        },
+        {
+          "name": "excludeHiddenSheets",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": false
+          }
+        },
+        {
+          "name": "containsChart",
+          "value": {
+            "type": "BOOLEAN",
+            "boolean": false
+          }
+        }
+      ],
+      "returnTo": {
+        "type": "SESSION",
+        "sessionName": {
+          "type": "STRING",
+          "string": "Default"
+        },
+        "sessionTarget": "LOCAL"
+      }
+    },
+    {
+      "uid": "c6fbd27f-dcfb-4787-851e-7c572a87b2a9",
+      "commandName": "Comment",
+      "packageName": "Comment",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "comment",
+          "value": {
+            "type": "STRING",
+            "string": "Iterate for every phone no in the excel"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "d11250f4-a416-4cc4-9e1e-7fb652ba09f8",
+      "commandName": "loop.commands.start",
+      "packageName": "Loop",
+      "children": [
+        {
+          "uid": "9186d5d0-499b-4127-87b5-27ce01575702",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "send the attachment"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "ae99a6ca-d158-4e31-8145-e75a815f410d",
+          "commandName": "if",
+          "packageName": "If",
+          "children": [
+            {
+              "uid": "5fd5894f-80ce-4ac7-a88d-89a94a93a9e0",
+              "commandName": "SendMailV2",
+              "packageName": "Email",
+              "disabled": false,
+              "attributes": [
+                {
+                  "name": "toAddress",
+                  "value": {
+                    "type": "STRING",
+                    "expression": "$ExcelRow[2]$"
+                  }
+                },
+                {
+                  "name": "cc",
+                  "value": {
+                    "type": "STRING",
+                    "string": ""
+                  }
+                },
+                {
+                  "name": "bcc",
+                  "value": {
+                    "type": "STRING",
+                    "string": ""
+                  }
+                },
+                {
+                  "name": "invalidAddress",
+                  "value": {
+                    "type": "BOOLEAN",
+                    "boolean": false
+                  }
+                },
+                {
+                  "name": "subject",
+                  "value": {
+                    "type": "STRING",
+                    "string": "Messageg from Bot"
+                  }
+                },
+                {
+                  "name": "fileList",
+                  "value": {
+                    "type": "LIST",
+                    "list": [
+                      {
+                        "type": "FILE",
+                        "expression": "file://$attchmentaddress$"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "ensureAttachmentsExist",
+                  "value": {
+                    "type": "BOOLEAN",
+                    "boolean": false
+                  }
+                },
+                {
+                  "name": "bodyFormat",
+                  "value": {
+                    "type": "STRING",
+                    "string": "PLAINTEXT"
+                  }
+                },
+                {
+                  "name": "message",
+                  "value": {
+                    "type": "STRING",
+                    "expression": "$message$"
+                  }
+                },
+                {
+                  "name": "goGreen",
+                  "value": {
+                    "type": "BOOLEAN",
+                    "boolean": true
+                  }
+                },
+                {
+                  "name": "serverType",
+                  "value": {
+                    "type": "STRING",
+                    "string": "EMAIL_SERVER"
+                  }
+                },
+                {
+                  "name": "encoding",
+                  "value": {
+                    "type": "STRING",
+                    "string": "UTF-8"
+                  }
+                },
+                {
+                  "name": "fromAddress",
+                  "value": {
+                    "type": "STRING",
+                    "string": "abhay.22210024@viit.ac.in"
+                  }
+                },
+                {
+                  "name": "useSecureConnection",
+                  "value": {
+                    "type": "BOOLEAN",
+                    "boolean": true
+                  }
+                },
+                {
+                  "name": "emailServerHost",
+                  "value": {
+                    "type": "STRING",
+                    "string": "smtp.gmail.com"
+                  }
+                },
+                {
+                  "name": "emailServerPort",
+                  "value": {
+                    "type": "NUMBER",
+                    "number": "587"
+                  }
+                },
+                {
+                  "name": "requiresAuthentication",
+                  "value": {
+                    "type": "BOOLEAN",
+                    "boolean": true
+                  }
+                },
+                {
+                  "name": "emailServerAuthType",
+                  "value": {
+                    "type": "STRING",
+                    "string": "Basic"
+                  }
+                },
+                {
+                  "name": "username",
+                  "value": {
+                    "type": "STRING",
+                    "string": ""
+                  }
+                },
+                {
+                  "name": "securedPassword",
+                  "value": {
+                    "type": "STRING",
+                    "string": "qcmqqanqiinlxovd "
+                  }
+                }
+              ]
+            }
+          ],
+          "branches": [],
+          "disabled": false,
+          "attributes": [
+            {
+              "attributes": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "STRING",
+                    "expression": "$attachemnt$"
+                  }
+                },
+                {
+                  "name": "operator",
+                  "value": {
+                    "type": "STRING",
+                    "string": "EQ"
+                  }
+                },
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "STRING",
+                    "string": "Yes"
+                  }
+                },
+                {
+                  "name": "matchCase",
+                  "value": {
+                    "type": "BOOLEAN",
+                    "boolean": true
+                  }
+                },
+                {
+                  "name": "isIgnoreCarriage",
+                  "value": {
+                    "type": "BOOLEAN",
+                    "boolean": false
+                  }
+                }
+              ],
+              "operatorAttribute": {
+                "operator": "OR",
+                "attributes": [
+                  {
+                    "name": "variable",
+                    "value": {
+                      "type": "STRING",
+                      "expression": "$attachemnt$"
+                    }
+                  },
+                  {
+                    "name": "operator",
+                    "value": {
+                      "type": "STRING",
+                      "string": "EQ"
+                    }
+                  },
+                  {
+                    "name": "value",
+                    "value": {
+                      "type": "STRING",
+                      "string": "yes"
+                    }
+                  },
+                  {
+                    "name": "matchCase",
+                    "value": {
+                      "type": "BOOLEAN",
+                      "boolean": true
+                    }
+                  },
+                  {
+                    "name": "isIgnoreCarriage",
+                    "value": {
+                      "type": "BOOLEAN",
+                      "boolean": false
+                    }
+                  }
+                ],
+                "value": {
+                  "type": "CONDITIONAL",
+                  "conditionalName": "stringVariable",
+                  "packageName": "String"
+                }
+              },
+              "name": "condition",
+              "value": {
+                "type": "CONDITIONAL",
+                "conditionalName": "stringVariable",
+                "packageName": "String"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "6cf0e7e7-1a89-463a-a33e-07072ad332e3",
+          "commandName": "SendMailV2",
+          "packageName": "Email",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "toAddress",
+              "value": {
+                "type": "STRING",
+                "expression": "$ExcelRow[2]$"
+              }
+            },
+            {
+              "name": "cc",
+              "value": {
+                "type": "STRING",
+                "string": ""
+              }
+            },
+            {
+              "name": "bcc",
+              "value": {
+                "type": "STRING",
+                "string": ""
+              }
+            },
+            {
+              "name": "invalidAddress",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": false
+              }
+            },
+            {
+              "name": "subject",
+              "value": {
+                "type": "STRING",
+                "string": "Messageg from Bot"
+              }
+            },
+            {
+              "name": "fileList",
+              "value": {
+                "type": "LIST",
+                "list": []
+              }
+            },
+            {
+              "name": "ensureAttachmentsExist",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": false
+              }
+            },
+            {
+              "name": "bodyFormat",
+              "value": {
+                "type": "STRING",
+                "string": "PLAINTEXT"
+              }
+            },
+            {
+              "name": "message",
+              "value": {
+                "type": "STRING",
+                "expression": "$message$"
+              }
+            },
+            {
+              "name": "goGreen",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": true
+              }
+            },
+            {
+              "name": "serverType",
+              "value": {
+                "type": "STRING",
+                "string": "EMAIL_SERVER"
+              }
+            },
+            {
+              "name": "encoding",
+              "value": {
+                "type": "STRING",
+                "string": "UTF-8"
+              }
+            },
+            {
+              "name": "fromAddress",
+              "value": {
+                "type": "STRING",
+                "string": "abhay.a.gaikwad2004@gmail.com"
+              }
+            },
+            {
+              "name": "useSecureConnection",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": true
+              }
+            },
+            {
+              "name": "emailServerHost",
+              "value": {
+                "type": "STRING",
+                "string": "smtp.gmail.com"
+              }
+            },
+            {
+              "name": "emailServerPort",
+              "value": {
+                "type": "NUMBER",
+                "number": "587"
+              }
+            },
+            {
+              "name": "requiresAuthentication",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": true
+              }
+            },
+            {
+              "name": "emailServerAuthType",
+              "value": {
+                "type": "STRING",
+                "string": "Basic"
+              }
+            },
+            {
+              "name": "username",
+              "value": {
+                "type": "STRING",
+                "string": "abhay.a.gaikwad2004@gmail.com"
+              }
+            },
+            {
+              "name": "securedPassword",
+              "value": {
+                "type": "STRING",
+                "string": "qcmqqanqiinlxovd "
+              }
+            }
+          ]
+        },
+        {
+          "uid": "5f8693be-f5b2-4314-9fd2-cc295ef06ca4",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "open the browser"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "115b46b2-7d04-4efc-9e90-16d20cf08277",
+          "commandName": "openbrowser",
+          "packageName": "Browser",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "openOption",
+              "value": {
+                "type": "STRING",
+                "string": "NEW_WIN"
+              }
+            },
+            {
+              "name": "browser",
+              "value": {
+                "type": "STRING",
+                "string": "CHROME"
+              }
+            },
+            {
+              "name": "url",
+              "value": {
+                "type": "STRING",
+                "expression": "https://web.whatsapp.com/send?phone=$ExcelRow[1]$&text=$message$"
+              }
+            },
+            {
+              "name": "timeoutValue",
+              "value": {
+                "type": "NUMBER",
+                "number": "240"
+              }
+            },
+            {
+              "name": "version",
+              "value": {
+                "type": "NUMBER",
+                "number": "3810"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "ac5a4f97-b231-4c94-8036-3530550edf1a",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "5 sec wait to to open the screen"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "a10cefa0-a505-4453-a76a-5adc49bc3c8e",
+          "commandName": "waitForScreenChange_V1",
+          "packageName": "Wait",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "relativeTo",
+              "value": {
+                "type": "STRING",
+                "string": "WINDOW"
+              }
+            },
+            {
+              "name": "window",
+              "value": {
+                "type": "WINDOW",
+                "expression": "$Browser2$"
+              }
+            },
+            {
+              "name": "windowArea",
+              "value": {
+                "type": "REGION",
+                "region": {
+                  "x": {
+                    "type": "NUMBER",
+                    "number": "1837"
+                  },
+                  "y": {
+                    "type": "NUMBER",
+                    "number": "938"
+                  },
+                  "width": {
+                    "type": "NUMBER",
+                    "number": "60"
+                  },
+                  "height": {
+                    "type": "NUMBER",
+                    "number": "67"
+                  },
+                  "capture": {
+                    "thumbnailMetadataPath": "358c16d6-fdf0-4f9a-a76a-5b50acb1979e.png",
+                    "screenshotMetadataPath": "0df3e0c7-d705-4726-a6c7-1ef9f703139d.png",
+                    "screenshotRectangle": {
+                      "x": 1469,
+                      "y": 750,
+                      "width": 48,
+                      "height": 54
+                    },
+                    "thumbnailRectangle": {
+                      "x": 1335,
+                      "y": 682,
+                      "width": 44,
+                      "height": 49
+                    },
+                    "securelyRecorded": false
+                  }
+                }
+              }
+            },
+            {
+              "name": "waitTimeBeforeCompare",
+              "value": {
+                "type": "NUMBER",
+                "number": "0"
+              }
+            },
+            {
+              "name": "waitTimeout",
+              "value": {
+                "type": "NUMBER",
+                "number": "5"
+              }
+            },
+            {
+              "name": "isThrowException",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": false
+              }
+            }
+          ]
+        },
+        {
+          "uid": "605e01ce-4bb9-410e-a1ee-b03dbbba9894",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "record the web whatsapp elemnt to parse them"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "348a62f8-e418-4f96-b712-b1fdaef24173",
+          "commandName": "capture",
+          "packageName": "Recorder",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "uiObject",
+              "value": {
+                "type": "UIOBJECT",
+                "uiObject": {
+                  "blob": "eyJjYXB0dXJlUG9pbnQiOnsiWCI6OSwiWSI6MTR9LCJvYmplY3RMb2NhdGlvbiI6eyJ0b3AiOjk1MSwibGVmdCI6MTg0NH19",
+                  "controlType": "BUTTON",
+                  "technologyType": "MS_COM_UI_AUTOMATION",
+                  "browserType": "UNKNOWN_BROWSER",
+                  "criteria": {
+                    "LegacyChildId": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "0"
+                      }
+                    },
+                    "Left": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "1835"
+                      }
+                    },
+                    "LegacyName": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "Send"
+                      }
+                    },
+                    "Name": {
+                      "enabled": true,
+                      "value": {
+                        "type": "STRING",
+                        "string": "Send"
+                      }
+                    },
+                    "LegacyDescription": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "IsControlElement": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "true"
+                      }
+                    },
+                    "LegacyValue": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "IsPasswordField": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "false"
+                      }
+                    },
+                    "HelpText": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "IsEnabled": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "true"
+                      }
+                    },
+                    "IsDataValidForForm": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "true"
+                      }
+                    },
+                    "IsContentElement": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "true"
+                      }
+                    },
+                    "TextFromTextRange": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "Top": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "942"
+                      }
+                    },
+                    "ControlType": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "1"
+                      }
+                    },
+                    "Width": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "31"
+                      }
+                    },
+                    "LocalizedControlType": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "button"
+                      }
+                    },
+                    "HasKeyboardFocus": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "false"
+                      }
+                    },
+                    "FrameworkId": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "Chrome"
+                      }
+                    },
+                    "LegacyRole": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "43"
+                      }
+                    },
+                    "AcceleratorKey": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "Culture": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "9"
+                      }
+                    },
+                    "Orientation": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "0"
+                      }
+                    },
+                    "LegacyKeyboardShortcut": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "ItemStatus": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "AccessKey": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "LegacyDefaultAction": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "press"
+                      }
+                    },
+                    "LegacyState": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "Focusable"
+                      }
+                    },
+                    "ID": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "Description": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "[pid:17512,providerId:0x0 Main(parent link):Microsoft: MSAA Proxy (IAccessible2) (unmanaged:uiautomationcore.dll)]"
+                      }
+                    },
+                    "ClassName": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "IsLinked": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "false"
+                      }
+                    },
+                    "Path": {
+                      "enabled": true,
+                      "value": {
+                        "type": "STRING",
+                        "string": "1|1|1|1|-1|-2|1|-1|1|1|-1"
+                      }
+                    },
+                    "IsKeyboardFocusable": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "true"
+                      }
+                    },
+                    "States": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "IsOffScreen": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "false"
+                      }
+                    },
+                    "IsRequiredForForm": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "false"
+                      }
+                    },
+                    "ItemType": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "LegacyHelp": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": ""
+                      }
+                    },
+                    "Height": {
+                      "enabled": false,
+                      "value": {
+                        "type": "STRING",
+                        "string": "31"
+                      }
+                    }
+                  },
+                  "isElevated": false,
+                  "capture": {
+                    "thumbnailMetadataPath": "ccfd82ac-efe9-497b-b1ba-0dbd0690f72d.png",
+                    "screenshotMetadataPath": "f5e38f80-47f7-458a-a6ea-afde3c9baf5f.png",
+                    "screenshotRectangle": {
+                      "x": 1475,
+                      "y": 761,
+                      "width": 25,
+                      "height": 25
+                    },
+                    "thumbnailRectangle": {
+                      "x": 0,
+                      "y": 0,
+                      "width": 25,
+                      "height": 25
+                    },
+                    "securelyRecorded": false
+                  }
+                },
+                "uiObjectWindow": {
+                  "type": "WINDOW",
+                  "expression": "$Browser2$"
+                }
+              }
+            },
+            {
+              "name": "buttonAction",
+              "value": {
+                "type": "STRING",
+                "string": "CLICK"
+              }
+            },
+            {
+              "name": "runInBackground",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": false
+              }
+            },
+            {
+              "name": "advancedWait",
+              "value": {
+                "type": "STRING",
+                "string": "BASIC"
+              }
+            },
+            {
+              "name": "wait",
+              "value": {
+                "type": "NUMBER",
+                "number": "15"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "55148022-893b-4ff0-b069-83d9a13e86b8",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "again 5 sec wait "
+              }
+            }
+          ]
+        },
+        {
+          "uid": "2be398c4-29fc-4b70-a25f-f8c0a4936a66",
+          "commandName": "waitForScreenChange_V1",
+          "packageName": "Wait",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "relativeTo",
+              "value": {
+                "type": "STRING",
+                "string": "WINDOW"
+              }
+            },
+            {
+              "name": "window",
+              "value": {
+                "type": "WINDOW",
+                "expression": "$Browser2$"
+              }
+            },
+            {
+              "name": "windowArea",
+              "value": {
+                "type": "REGION",
+                "region": {
+                  "x": {
+                    "type": "NUMBER",
+                    "number": "698"
+                  },
+                  "y": {
+                    "type": "NUMBER",
+                    "number": "252"
+                  },
+                  "width": {
+                    "type": "NUMBER",
+                    "number": "1195"
+                  },
+                  "height": {
+                    "type": "NUMBER",
+                    "number": "757"
+                  },
+                  "capture": {
+                    "thumbnailMetadataPath": "d2ed6b24-cb73-4a87-ba4a-265452a51a3c.png",
+                    "screenshotMetadataPath": "6944ff85-cb6d-4826-95a9-63d77889967f.png",
+                    "screenshotRectangle": {
+                      "x": 558,
+                      "y": 201,
+                      "width": 956,
+                      "height": 606
+                    },
+                    "thumbnailRectangle": {
+                      "x": 111,
+                      "y": 40,
+                      "width": 190,
+                      "height": 120
+                    },
+                    "securelyRecorded": false
+                  }
+                }
+              }
+            },
+            {
+              "name": "waitTimeBeforeCompare",
+              "value": {
+                "type": "NUMBER",
+                "number": "0"
+              }
+            },
+            {
+              "name": "waitTimeout",
+              "value": {
+                "type": "NUMBER",
+                "number": "5"
+              }
+            },
+            {
+              "name": "isThrowException",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": false
+              }
+            }
+          ]
+        },
+        {
+          "uid": "cfb776f3-5949-4bd6-bd4f-50536d6e972f",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "close the whatsapp"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "6b2eb53f-3a40-4269-b70d-1d5aaa95e0d0",
+          "commandName": "close",
+          "packageName": "Browser",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "whatToClose",
+              "value": {
+                "type": "STRING",
+                "string": "Tab"
+              }
+            },
+            {
+              "name": "tabValue",
+              "value": {
+                "type": "WINDOW",
+                "expression": "$Browser2$"
+              }
+            },
+            {
+              "name": "timeoutValue",
+              "value": {
+                "type": "NUMBER",
+                "number": "240"
+              }
+            },
+            {
+              "name": "version",
+              "value": {
+                "type": "NUMBER",
+                "number": "3810"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "885471ae-a92a-4abc-a275-38dc1be88c7d",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "wait for closing the whatsapp"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "58243f35-ad9a-43ec-840f-65d68f338aad",
+          "commandName": "waitForWindow",
+          "packageName": "Wait",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "waitType",
+              "value": {
+                "type": "STRING",
+                "string": "CLOSE"
+              }
+            },
+            {
+              "name": "window",
+              "value": {
+                "type": "WINDOW",
+                "expression": "$Browser2$"
+              }
+            },
+            {
+              "name": "waitTimeout",
+              "value": {
+                "type": "NUMBER",
+                "number": "5"
+              }
+            },
+            {
+              "name": "isThrowException",
+              "value": {
+                "type": "BOOLEAN",
+                "boolean": false
+              }
+            }
+          ]
+        },
+        {
+          "uid": "849d95f9-c3bb-4eed-842e-65481d7c98d6",
+          "commandName": "Comment",
+          "packageName": "Comment",
+          "disabled": false,
+          "attributes": [
+            {
+              "name": "comment",
+              "value": {
+                "type": "STRING",
+                "string": "close the excel"
+              }
+            }
+          ]
+        }
+      ],
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "loopType",
+          "value": {
+            "type": "STRING",
+            "string": "ITERATOR"
+          }
+        },
+        {
+          "name": "iterator",
+          "returnTo": {
+            "type": "VARIABLE",
+            "variableName": "ExcelRow"
+          },
+          "attributes": [
+            {
+              "name": "loopSelection",
+              "value": {
+                "type": "STRING",
+                "string": "ALL_ROWS"
+              }
+            },
+            {
+              "name": "readOption",
+              "value": {
+                "type": "STRING",
+                "string": "READ_CELL_TEXT"
+              }
+            },
+            {
+              "name": "session",
+              "value": {
+                "type": "SESSION",
+                "sessionName": {
+                  "type": "STRING",
+                  "string": "Default"
+                }
+              }
+            }
+          ],
+          "value": {
+            "type": "ITERATOR",
+            "iteratorName": "loop.iterators.excel",
+            "packageName": "Excel_MS"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "ab31bd67-5b65-4e7d-8505-082defcff53d",
+      "commandName": "CloseSpreadsheet",
+      "packageName": "Excel_MS",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "isSave",
+          "value": {
+            "boolean": true,
+            "type": "BOOLEAN"
+          }
+        },
+        {
+          "name": "session",
+          "value": {
+            "sessionName": {
+              "string": "Default",
+              "type": "STRING"
+            },
+            "type": "SESSION"
+          }
+        }
+      ]
+    },
+    {
+      "uid": "5b484248-d048-4fa4-bd24-fdbaa2cdd33e",
+      "commandName": "Comment",
+      "packageName": "Comment",
+      "disabled": false,
+      "attributes": [
+        {
+          "name": "comment",
+          "value": {
+            "type": "STRING",
+            "string": "bot task completd"
+          }
+        }
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "name": "file",
+      "description": "",
+      "type": "FILE",
+      "readOnly": false,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "FILE",
+        "string": "file:///C:/Users/Administrator/Downloads/New%20Microsoft%20Excel%20Worksheet.xlsx"
+      }
+    },
+    {
+      "name": "ExcelRow",
+      "description": "",
+      "type": "RECORD",
+      "readOnly": false,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "RECORD",
+        "record": {
+          "schema": [],
+          "values": []
+        }
+      }
+    },
+    {
+      "name": "Browser2",
+      "description": "",
+      "type": "WINDOW",
+      "readOnly": true,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "WINDOW",
+        "window": {
+          "name": "*WhatsApp*",
+          "path": "",
+          "class": "Chrome_WidgetWin_",
+          "handle": "0",
+          "isChild": false,
+          "presetType": "NONE",
+          "windowType": "BROWSER_CHROME",
+          "browserTabUrl": "https://web.whatsapp.com/",
+          "browserTabOpenNewWindow": false,
+          "nameCaseInsensitive": false,
+          "virtualType": "VIRTUAL_TYPE_NONE",
+          "virtualPath": ""
+        }
+      }
+    },
+    {
+      "name": "message",
+      "description": "",
+      "type": "STRING",
+      "readOnly": false,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "STRING",
+        "string": ""
+      }
+    },
+    {
+      "name": "filePath",
+      "description": "",
+      "type": "STRING",
+      "readOnly": false,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "STRING",
+        "string": ""
+      }
+    },
+    {
+      "name": "gmailpassword",
+      "description": "",
+      "type": "STRING",
+      "readOnly": false,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "STRING",
+        "string": "qcmqqanqiinlxovd "
+      }
+    },
+    {
+      "name": "attachemnt",
+      "description": "",
+      "type": "STRING",
+      "readOnly": false,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "STRING",
+        "string": ""
+      }
+    },
+    {
+      "name": "attchmentaddress",
+      "description": "",
+      "type": "STRING",
+      "readOnly": false,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "STRING",
+        "string": ""
+      }
+    },
+    {
+      "name": "email",
+      "description": "",
+      "type": "STRING",
+      "readOnly": false,
+      "input": false,
+      "output": false,
+      "defaultValue": {
+        "type": "STRING",
+        "string": ""
+      }
+    }
+  ],
+  "packages": [
+    {
+      "name": "Browser",
+      "version": "3.13.1",
+      "settingsAttributes": []
+    },
+    {
+      "name": "Comment",
+      "version": "2.16.0",
+      "settingsAttributes": []
+    },
+    {
+      "name": "Email",
+      "version": "3.28.0",
+      "settingsAttributes": []
+    },
+    {
+      "name": "Excel_MS",
+      "version": "6.21.7",
+      "settingsAttributes": []
+    },
+    {
+      "name": "File",
+      "version": "6.11.0",
+      "settingsAttributes": []
+    },
+    {
+      "name": "If",
+      "version": "3.7.14-20231116-000453",
+      "settingsAttributes": []
+    },
+    {
+      "name": "Loop",
+      "version": "3.8.1-20231117-175130",
+      "settingsAttributes": []
+    },
+    {
+      "name": "MessageBox",
+      "version": "3.7.0",
+      "settingsAttributes": []
+    },
+    {
+      "name": "Prompt",
+      "version": "2.9.0",
+      "settingsAttributes": []
+    },
+    {
+      "name": "Recorder",
+      "version": "4.1.0-20250403-131547",
+      "settingsAttributes": []
+    },
+    {
+      "name": "String",
+      "version": "5.11.3",
+      "settingsAttributes": []
+    },
+    {
+      "name": "Wait",
+      "version": "4.11.0",
+      "settingsAttributes": []
+    }
+  ],
+  "workItemTemplateName": null,
+  "properties": {
+    "botCodeVersion": "7",
+    "improvedNumberSupport": true,
+    "timeout": "0s",
+    "automationPriority": "PRIORITY_MEDIUM",
+    "runInChildWindow": false
+  }
+}
